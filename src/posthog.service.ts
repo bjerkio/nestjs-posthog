@@ -11,10 +11,10 @@ import type {
 
 @Injectable()
 export class PosthogService {
+  private readonly logger = new Logger(PosthogService.name);
   constructor(
     @Inject(POSTHOG_MODULE_OPTIONS) private readonly config: PosthogConfig,
     @Inject(POSTHOG_CLIENT) private readonly client: PostHog,
-    private readonly logger: Logger,
   ) {}
 
   /**
