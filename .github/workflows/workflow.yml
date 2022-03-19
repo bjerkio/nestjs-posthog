@@ -1,0 +1,33 @@
+name: Release
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+          registry-url: 'https://registry.npmjs.org'
+          cache: yarn
+      - run: yarn install
+      - run: yarn run build
+      - run: yarn test
+        env:
+          CI: true
+      - uses: codecov/codecov-action@v2
+      - uses: GoogleCloudPlatform/release-please-action@v2.29.2
+        id: release
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          release-type: node
+          package-name: nestjs-posthog
+      - if: ${{ steps.release.outputs.release_created }}
+        run: yarn publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
