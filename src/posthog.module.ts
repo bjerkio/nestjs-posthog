@@ -1,5 +1,5 @@
 import { DynamicModule, Module, Provider } from '@nestjs/common';
-import PostHog from 'posthog-node';
+import PostHog = require('posthog-node');
 import {
   POSTHOG_CLIENT,
   POSTHOG_MODULE_OPTIONS,

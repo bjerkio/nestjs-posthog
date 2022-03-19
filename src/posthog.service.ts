@@ -1,5 +1,5 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
-import PostHog, { GroupKey, GroupType } from 'posthog-node';
+import type { GroupKey, GroupType, default as PostHog } from 'posthog-node';
 import { POSTHOG_CLIENT, POSTHOG_MODULE_OPTIONS } from './constants';
 import type {
   PosthogAliasArgs,
