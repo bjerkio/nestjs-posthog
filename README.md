@@ -92,3 +92,6 @@ documentation][posthog-node].
 
 We love to get help 🙏 Read more about how to get started in
 [CONTRIBUTING](CONTRIBUTING.md) 🌳
+
+This is a community-driven Open Source project with no ties with Posthog. It's
+supported on a volunteer-basis, but frequently used in commerical projects.
