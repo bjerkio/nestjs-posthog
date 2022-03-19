@@ -22,7 +22,7 @@
     "@nestjs/core": "7.6.15",
     "@nestjs/platform-express": "^7.5.5",
     "@nestjs/testing": "^7.5.5",
-    "@types/jest": "^27.0.1",
+    "@types/jest": "^27.4.1",
     "@typescript-eslint/eslint-plugin": "^5.8.1",
     "eslint": "7.32.0",
     "eslint-plugin-eslint-comments": "^3.2.0",
