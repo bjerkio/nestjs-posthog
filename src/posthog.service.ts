@@ -1,16 +1,21 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, Logger } from '@nestjs/common';
 import PostHog, { GroupKey, GroupType } from 'posthog-node';
-import { POSTHOG_CLIENT } from './constants';
+import { POSTHOG_CLIENT, POSTHOG_MODULE_OPTIONS } from './constants';
 import type {
   PosthogAliasArgs,
   PosthogCaptureArgs,
+  PosthogConfig,
   PosthogGroupIdentifyArgs,
   PosthogIdentifyArgs,
 } from './types';
 
 @Injectable()
 export class PosthogService {
-  constructor(@Inject(POSTHOG_CLIENT) private readonly client: PostHog) {}
+  constructor(
+    @Inject(POSTHOG_MODULE_OPTIONS) private readonly config: PosthogConfig,
+    @Inject(POSTHOG_CLIENT) private readonly client: PostHog,
+    private readonly logger: Logger,
+  ) {}
 
   /**
    * Capture allows you to capture anything a user does within your system,
@@ -18,7 +23,10 @@ export class PosthogService {
    * work out which features to improve or where people are giving up.
    */
   capture(args: PosthogCaptureArgs): void {
-    return this.client.capture(args);
+    this.logger.debug(args, 'received Posthog capture event');
+    if (!this.config.mock) {
+      return this.client.capture(args);
+    }
   }
 
   /**
@@ -31,7 +39,10 @@ export class PosthogService {
    *  doing the identify call in the frontend will be enough.:
    */
   alias(args: PosthogAliasArgs): void {
-    return this.client.alias(args);
+    this.logger.debug(args, 'ran Posthog alias method');
+    if (!this.config.mock) {
+      return this.client.alias(args);
+    }
   }
 
   /**
@@ -39,7 +50,10 @@ export class PosthogService {
    * and even do things like segment users by these properties.
    */
   identify(args: PosthogIdentifyArgs) {
-    return this.client.identify(args);
+    this.logger.debug(args, 'ran Posthog identify method');
+    if (!this.config.mock) {
+      return this.client.identify(args);
+    }
   }
 
   /**
@@ -47,7 +61,10 @@ export class PosthogService {
    * using my product in PostHog.
    */
   groupIdentify(args: PosthogGroupIdentifyArgs) {
-    return this.client.groupIdentify(args);
+    this.logger.debug(args, 'ran Posthog groupIdentify method');
+    if (!this.config.mock) {
+      return this.client.groupIdentify(args);
+    }
   }
 
   /**
@@ -68,17 +85,28 @@ export class PosthogService {
    * @param groups optional - what groups are currently active (group analytics)
    * @returns whether feature is enabled or not
    */
-  isFeatureEnabled(
+  async isFeatureEnabled(
     key: string,
     distinctId: string,
     defaultResult?: boolean,
     groups?: Record<GroupType, GroupKey>,
   ): Promise<boolean> {
+    this.logger.debug(
+      { key, distinctId, defaultResult, groups },
+      'ran Posthog isFeatureEnabled method',
+    );
+    if (this.config.mock) {
+      return true;
+    }
+
     return this.client.isFeatureEnabled(key, distinctId, defaultResult, groups);
   }
 
   reloadFeatureFlags() {
-    return this.client.reloadFeatureFlags();
+    this.logger.debug('ran Posthog reloadFeatureFlags method');
+    if (!this.config.mock) {
+      return this.client.reloadFeatureFlags();
+    }
   }
 
   /**
@@ -86,6 +114,9 @@ export class PosthogService {
    * a clean shutdown.
    */
   shutdown() {
-    return this.client.shutdown();
+    this.logger.debug('ran Posthog shutdown method');
+    if (!this.config.mock) {
+      return this.client.shutdown();
+    }
   }
 }

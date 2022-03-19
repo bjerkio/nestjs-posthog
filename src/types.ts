@@ -12,6 +12,16 @@ export interface PosthogConfig {
   apiKey: string;
 
   options?: Option;
+
+  /**
+   * When mock is used, none of the events
+   * are captured, only dumped to console.
+   *
+   * Useful for local development.
+   *
+   * @default false
+   */
+  mock: boolean;
 }
 
 export interface PosthogSyncConfig {

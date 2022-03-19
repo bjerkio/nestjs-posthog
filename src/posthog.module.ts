@@ -73,13 +73,11 @@ export class PosthogModule {
 
   private static createAsyncConfig(): Provider {
     return {
-      provide: POSTHOG_CLIENT,
+      provide: POSTHOG_MODULE_OPTIONS,
       inject: [POSTHOG_MODULE_USER_OPTIONS],
-      useFactory: async (opts: PosthogConfig) => {
+      useFactory: (opts: PosthogConfig): PosthogConfig => {
         return {
-          type: 'stdout',
-          output: /* istanbul ignore next */ (out: unknown) =>
-            process.stdout.write(`${JSON.stringify(out)}\n`),
+          mock: false,
           ...opts,
         };
       },
