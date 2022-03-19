@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.1.1](https://github.com/bjerkio/nestjs-posthog/compare/v1.1.0...v1.1.1) (2022-03-19)
+
+
+### Bug Fixes
+
+* logger injection issue ([95aea9b](https://github.com/bjerkio/nestjs-posthog/commit/95aea9b17f78b3796fc70252b83089bc49e0e968))
+
 ## [1.1.0](https://github.com/bjerkio/nestjs-posthog/compare/v1.0.0...v1.1.0) (2022-03-19)
 
 
