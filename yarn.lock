@@ -1006,9 +1006,9 @@
     tslib "2.3.1"
 
 "@nestjs/testing@^8.4.1":
-  version "8.4.1"
-  resolved "https://registry.yarnpkg.com/@nestjs/testing/-/testing-8.4.1.tgz#b1cad0b0e2f779b6bbd5ef1bb5a16cf59951fb4e"
-  integrity sha512-LOvsLuNh2eRwAtyeoIZWmUZ08wt7QrPrKQujWuRyv+vBYtC+FLHjqreWLpwG2yulNEoQs9Qlr2ubPvFGT1953g==
+  version "8.4.2"
+  resolved "https://registry.yarnpkg.com/@nestjs/testing/-/testing-8.4.2.tgz#ed392a206b90f563f85c8f03534de93b8710afe3"
+  integrity sha512-vb8sJTjdakqa9k5tMdcKJf8lG3TT7ekwaVbQ4FXGBjjYrriILYioQv23kkKrgOkT1HErUPdYAgeECw5qE8MIzg==
   dependencies:
     optional "0.1.4"
     tslib "2.3.1"
@@ -1448,12 +1448,7 @@ ansi-escapes@^4.2.1, ansi-escapes@^4.3.0:
   dependencies:
     type-fest "^0.11.0"
 
-ansi-regex@^5.0.0:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-5.0.1.tgz#082cb2c89c9fe8659a311a53bd6a4dc5301db304"
-  integrity sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==
-
-ansi-regex@^5.0.1:
+ansi-regex@^5.0.0, ansi-regex@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-5.0.1.tgz#082cb2c89c9fe8659a311a53bd6a4dc5301db304"
   integrity sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==
